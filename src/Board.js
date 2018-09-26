@@ -23,6 +23,13 @@
         return this.get(rowIndex);
       }, this);
     },
+    
+    // cols: function() {
+    //   return _(_.range(this.get('n'))).map(function(rowIndex) {
+    //     return this.get(rowIndex[]);
+    //   }, this);
+    // },
+    
 
     togglePiece: function(rowIndex, colIndex) {
       this.get(rowIndex)[colIndex] = + !this.get(rowIndex)[colIndex];
@@ -62,7 +69,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -81,34 +88,35 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       //select the row
-      var currentRow = this.get(rowIndex);
+      const currentRow = this.get(rowIndex);
       //keep track of count
-      var count = 0;
+      let count = 0;
       //loop through the row
-      for (var i = 0; i < currentRow.length; i++) {
+      for (let i = 0; i < currentRow.length; i++) {
         //if any of the elements in the row is equal to one (aka theres a conflict), increment count
         if (currentRow[i] === 1) {
-          count++;
+          count += 1;
         } 
       }
       //if theres more than one piece on the chessboard then there is a conflict 
-      return count > 1
+      return count > 1;
     },
 
     //boolean for entire board
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      // loop through the entire board by its row
-      for (var i = 0; i < this.get('n'); i++) {
-        // if hasRowConflictAt(any of the rows) is true then its true
-        if (hasRowConflictAt(i)) {
+      // console.log(this);
+      const board = this.rows();
+      // console.log('I am rows', rows);
+      //loop through the rows
+      for (let i = 0; i < board.length; i += 1) {
+        // debugger;
+        if (this.hasRowConflictAt(i)) {
           return true;
-        } 
+        }
       }
-      //or it's false (no else)
       return false;
     },
-
 
 
     // COLUMNS - run from top to bottom
@@ -116,13 +124,47 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      //loop through the colIndex
-      return false; // fixme
+      // return false;
+      let count = 0;
+      const board = this.rows();
+      // debugger;
+      const columns = [];
+      for (let y = 0; y < board.length; y += 1) {
+        const temp = [];
+        for (let x = 0; x < board.length; x += 1) {
+          temp.push(board[x][y]);
+        }
+        columns.push(temp);
+      }
+      const column = columns[colIndex];
+      for (let i = 0; i < column.length; i += 1) {
+        if (column[i]) {
+          count += 1;
+        }
+      }
+      // console.log(board, column)
+      return count > 1;
     },
+    
+  
+   // var board1 = [[0, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 0]]
+    // var arr = [[0, 1, 0, 0], 
+    //            [0, 1, 0, 0],  
+    //            [0, 1, 0, 0], 
+    //            [0, 1, 0, 0]
+    //           ];
+    // console.log(arr.map(function(row){return row[0]}))
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      const board = this.rows();
+      for (let i = 0; i < board.length; i += 1) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
+      // return false; // fixme
     },
 
 
