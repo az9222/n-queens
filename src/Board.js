@@ -77,11 +77,13 @@
     // ROWS - run from left to right
     // --------------------------------------------------------------
     //
+    //boolean for specific row
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       return false; // fixme
     },
 
+    //boolean for entire boards
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       return false; // fixme
