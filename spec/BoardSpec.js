@@ -13,6 +13,8 @@ describe('Board', function() {
       var conflictExpected = _(expectedConflicts).contains(conflictType);
       var message = conflictExpected ? 'should' : 'should not';
       it(message + ' find a ' + conflictType + ' conflict', function() {
+        // console.log(board['hasAny' + capitalize(conflictType) + 'Conflicts'])
+        // console.log(conflictDetect/ed, conflictExpected)
         expect(conflictDetected).to.be.equal(conflictExpected);
       });
     });
