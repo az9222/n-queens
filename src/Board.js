@@ -101,12 +101,9 @@
     //boolean for entire board
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      // console.log(this);
       const board = this.rows();
-      // console.log('I am rows', rows);
       //loop through the rows
       for (let i = 0; i < board.length; i += 1) {
-        // debugger;
         if (this.hasRowConflictAt(i)) {
           return true;
         }
@@ -131,7 +128,6 @@
       //   columns.push(temp);
       // }
       // const column = columns[colIndex];
-      //Checking for a specific column
       for (let i = 0; i < board.length; i++) {
         if (board[i][colIndex] === 1) {
           count++;
@@ -149,7 +145,6 @@
         }
       }
       return false;
-      // return false; // fixme
     },
  
 
@@ -173,7 +168,7 @@
 
     // _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
     //   return colIndex - rowIndex;
-    // test if any major diagonals on this board contain conflicts
+    // test if any major diagonal on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       const board = this.rows();
       for (let i = -2; i < board.length; i += 1) {
@@ -194,7 +189,6 @@
       const board = this.rows();
       let count = 0;
       let col = minorDiagonalColumnIndexAtFirstRow;
-      // for (let row = board.length - 1; row >= 0; row -= 1) {
       for (let row = 0; row < board.length; row += 1) {
         if (board[row][col]) {
           count += 1;
@@ -212,7 +206,7 @@
           return true;
         }
       }
-      return false; // fixme
+      return false; 
     },
 
     /*--------------------  End of Helper Functions  ---------------------*/
