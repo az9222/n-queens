@@ -81,7 +81,7 @@
     //boolean for specific row
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      //select the row
+      //select the row as each individual row as arr
       const currentRow = this.get(rowIndex);
       //keep track of count
       let count = 0;
@@ -118,22 +118,21 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      // return false;
       let count = 0;
       const board = this.rows();
-      // debugger;
-      const columns = [];
-      for (let y = 0; y < board.length; y += 1) {
-        const temp = [];
-        for (let x = 0; x < board.length; x += 1) {
-          temp.push(board[x][y]);
-        }
-        columns.push(temp);
-      }
-      const column = columns[colIndex];
-      for (let i = 0; i < column.length; i += 1) {
-        if (column[i]) {
-          count += 1;
+      // const columns = [];
+      // for (let y = 0; y < board.length; y += 1) {
+      //   const temp = [];
+      //   for (let x = 0; x < board.length; x += 1) {
+      //     temp.push(board[x][y]);
+      //   }
+      //   columns.push(temp);
+      // }
+      // const column = columns[colIndex];
+      //Checking for a specific column
+      for (let i = 0; i < board.length; i++) {
+        if (board[i][colIndex] === 1) {
+          count++;
         }
       }
       return count > 1;
@@ -161,26 +160,17 @@
       const board = this.rows();
       let count = 0;
       let col = majorDiagonalColumnIndexAtFirstRow;
-      // for (let col = 0; col < board.length; col += 1) {
-      //   let count = 0;
-      //   if (board[i][colIndex]) {
-      //     count += 1;
-      //   }
-      //   colIndex += 1;
-
-      // }
-      // let start = getFirstRowColumnIndexForMajorDiagonalOn()
-      for (let i = 0; i < board.length; i += 1) {
+      for (let i = 0; i < board.length; i++) {
         if (board[i][col]) {
-          count += 1;
+          count++;
         }
-        col += 1;
+        col++;
       }
       return count > 1;
     },
 
-    
-
+    // _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
+    //   return colIndex - rowIndex;
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       const board = this.rows();
@@ -215,7 +205,7 @@
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       const board = this.rows();
-      for (let i = 0; i < board.length; i += 1) {
+      for (let i = 0; i < board.length + 2; i++) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
