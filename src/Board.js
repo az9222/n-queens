@@ -18,6 +18,7 @@
       }
     },
 
+    //returns the 2d array
     rows: function() {
       return _(_.range(this.get('n'))).map(function(rowIndex) {
         return this.get(rowIndex);
