@@ -119,15 +119,6 @@
     hasColConflictAt: function(colIndex) {
       let count = 0;
       const board = this.rows();
-      // const columns = [];
-      // for (let y = 0; y < board.length; y += 1) {
-      //   const temp = [];
-      //   for (let x = 0; x < board.length; x += 1) {
-      //     temp.push(board[x][y]);
-      //   }
-      //   columns.push(temp);
-      // }
-      // const column = columns[colIndex];
       for (let i = 0; i < board.length; i++) {
         if (board[i][colIndex] === 1) {
           count++;
@@ -171,7 +162,7 @@
     // test if any major diagonal on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       const board = this.rows();
-      for (let i = -2; i < board.length; i += 1) {
+      for (let i = 0 - Math.floor(board.length / 2); i < board.length; i += 1) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
@@ -201,7 +192,7 @@
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       const board = this.rows();
-      for (let i = 0; i < board.length + 2; i++) {
+      for (let i = 0; i < board.length + Math.floor(board.length / 2); i++) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }

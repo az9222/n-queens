@@ -23,16 +23,16 @@ window.findNRooksSolution = function(n) {
   //create a nested for loop, the first iteration going through the arrays
   for (var row = 0; row < n; row++) {
     //the second iteration will go through each column (element)
-    for(var col = 0; col < n; col++) {
-        //put rook first
-        solution.togglePiece(row, col)
-        //if the element doesnt have any conflicts and numRooks > 0, it will now equal to 1 and then -1 from rook
-        if (!solution.hasAnyRooksConflicts() && numRooks > 0) {
-          numRooks--;
-        } else {
-          //toggle off
-          solution.togglePiece(row, col);
-        }
+    for (var col = 0; col < n; col++) {
+      //put rook first
+      solution.togglePiece(row, col);
+      //if the element doesnt have any conflicts and numRooks > 0, it will now equal to 1 and then -1 from rook
+      if (!solution.hasAnyRooksConflicts() && numRooks > 0) {
+        numRooks--;
+      } else {
+        //toggle off
+        solution.togglePiece(row, col);
+      }
     }
   }
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution.rows()));
@@ -49,26 +49,8 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  //create a new instance of a class
-  var solution = new Board ({n: n});
-  //set number of queens to n
-  var numQueens = n;
-  //first loop goes through rows
-  for (var row = 0; row < n; row++) {
-    //second loop goes through column (each element)
-    for (var col = 0; col < n; col++) {
-      //toggle and put queen down
-      solution.togglePiece(row, col);
-      //if the element does not have any queen conflict and the number of queens is greater than 0
-      if (!solution.hasAnyQueensConflicts() && numQueens > 0) {
-        //then number of queens decrements
-        numQueens--;
-        //otherwise toggle back
-      } else {
-        solution.togglePiece(row, col);
-      }
-    }
-  }
+
+  // if numQueens is 0 we return otherwise we will keep iterate the board
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution.rows()));
   return solution.rows();
 };
