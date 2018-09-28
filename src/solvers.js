@@ -13,8 +13,8 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
-
 // Given an n x n chessboard, how would you place n rooks such that none of them are attacking each other?
+
 window.findNRooksSolution = function(n) {
   //create an instance of a board
   var solution = new Board ({n: n});
@@ -49,12 +49,63 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
+  // let numQueens = n; 
+  var solution = new Board ({n: n});
+  
+  var helper = function(row) {
+    // when row and n are same, we return 
+    // base case 
+    if (row === n) {
+      return;
+      // return;
+    } 
+    for (let col = 0; col < n; col += 1) {
+      solution.togglePiece(row, col);
+      // console.log(solution.rows())
+      debugger
+      if (!solution.hasAnyQueensConflicts()) {
+        solution.togglePiece(row, col);
+        helper(row + 1);
+      } 
+      
+    }
+    
+  };
+  helper(0);
 
   // if numQueens is 0 we return otherwise we will keep iterate the board
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution.rows()));
   return solution.rows();
 };
 
+  /* base
+  if res === n arr.slice();
+  
+  
+  
+  
+  if there is a conflict we return 
+    
+  else we recurse the board 
+  
+    during recursion, we are going to toggle and check each possibilities 
+  
+  if (there is no conflict and number of queens reaches 0, we return back the board )  
+  
+  
+  helper(board, row - 1, n) 
+} 
+  
+  
+  the solution when n is 4
+  0 1 0 0 
+  0 0 0 1
+  1 0 0 0
+  0 0 1 0  
+  
+  */
+  
+  
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
   var solutionCount = undefined; //fixme
