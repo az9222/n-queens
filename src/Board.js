@@ -18,19 +18,17 @@
       }
     },
 
-    //returns the 2d array
     rows: function() {
       return _(_.range(this.get('n'))).map(function(rowIndex) {
         return this.get(rowIndex);
       }, this);
     },
 
-    //tells you where to put the piece    
     togglePiece: function(rowIndex, colIndex) {
       this.get(rowIndex)[colIndex] = + !this.get(rowIndex)[colIndex];
       this.trigger('change');
     },
-    // gives u where the row started 
+
     _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
       return colIndex - rowIndex;
     },
@@ -44,7 +42,6 @@
     },
 
     hasAnyQueenConflictsOn: function(rowIndex, colIndex) {
-      
       return (
         this.hasRowConflictAt(rowIndex) ||
         this.hasColConflictAt(colIndex) ||
@@ -65,7 +62,7 @@
     },
 
 
-    /*
+/*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -108,6 +105,7 @@
           },
 
 
+
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
     //
@@ -145,18 +143,6 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    // hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-    //   const board = this.rows();
-    //   let count = 0;
-    //   let col = majorDiagonalColumnIndexAtFirstRow;
-    //   for (let i = 0; i < board.length; i++) {
-    //     if (board[i][col]) {
-    //       count++;
-    //     }
-    //     col++;
-    //   }
-    //   return count > 1;
-    // },
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
 
       var size = this.get('n');
@@ -174,33 +160,7 @@
       return count > 1;
           },
 
-        var size = this.get('n');
-        var count = 0;
-        var rowIdx = 0;
-        var colIdx = majorDiagonalColumnIndexAtFirstRow;
-
-        for (rowIdx = 0, rowIdx < size && colIdx < size; rowIdx++, colIdx++;) {
-          if (colIdx >= 0) {
-            var row = this.get(rowIdx);
-            count += row[colIdx];
-          }
-        }
-
-        return count > 1;
-      },
-
-    // _getFirstRowColumnIndexForMajorDiagonalOn: function(rowIndex, colIndex) {
-    //   return colIndex - rowIndex;
-    // test if any major diagonal on this board contain conflicts
-    // hasAnyMajorDiagonalConflicts: function() {
-    //   const board = this.rows();
-    //   for (let i = 0 - Math.floor(board.length / 2); i < board.length; i += 1) {
-    //     if (this.hasMajorDiagonalConflictAt(i)) {
-    //       return true;
-    //     }
-    //   }
-    //   return false; // fixme
-    // },
+    // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
 
       var size = this.get('n');

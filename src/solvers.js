@@ -82,34 +82,6 @@ window.findNQueensSolution = function(n) {
   return solution;
 };
 
-  /* base
-  if res === n arr.slice();
-  
-  
-  
-  
-  if there is a conflict we return 
-    
-  else we recurse the board 
-  
-    during recursion, we are going to toggle and check each possibilities 
-  
-  if (there is no conflict and number of queens reaches 0, we return back the board )  
-  
-  
-  helper(board, row - 1, n) 
-} 
-  
-  
-  the solution when n is 4
-  0 1 0 0 
-  0 0 0 1
-  1 0 0 0
-  0 0 1 0  
-  
-  */
-  
-  
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
 
